@@ -31,7 +31,9 @@ class Checkout extends Component {
 var mapStateToProps = (state) => {
     return {
  
-     
+        // orderTotal: state.orderTotal
+        //here we need to add state.ourreducer name , because we have 2 reducers so we gave state.shop
+        //then only we get the data. 
         orderTotal: state.shop.orderTotal
       
     }

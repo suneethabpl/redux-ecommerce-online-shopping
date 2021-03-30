@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
+// import React, { PureComponent } from 'react'
 import Item from './Item'
 import { addToCart,getProducts } from './redux_shop'
 import { connect } from 'react-redux'
 
 
-
+// class Catalog extends Component {
+// class Catalog extends PureComponent {
 class Catalog extends Component {
-  
+    // constructor(props) {
+    //     super(props);
         constructor() {
             super();
         this.state = {
+            // items: props.items,no more props coming intially. 
             items: [],
             loading: true,
             error: false
@@ -30,9 +34,11 @@ class Catalog extends Component {
         console.log(item);
         this.props.addToCart(item);
     }
- 
+    // shouldComponentUpdate() {
+    //     return false;
+    // }
 
-
+    //now need to add componentdidmount here
     componentDidMount(){
        this.props.getProducts();
     }
@@ -45,7 +51,7 @@ class Catalog extends Component {
 
         if (this.state.error == true) {
             return (<div>Failed to load data. please try again.</div>)
-         
+            //it should be in catalog
         }
 
         return (
@@ -63,7 +69,7 @@ class Catalog extends Component {
     }
 }
 
-
+//here i want to receive the state now from redux.
 
 var mapStateToProps = (state) => {
     return {
@@ -77,6 +83,9 @@ var mapDispatchToProps = {
     getProducts,
   
 }
-
+//here no need to state. 
+// export default connect(null, mapDispatchToProps)(Catalog);
 export default connect(mapStateToProps, mapDispatchToProps)(Catalog);
 
+//now here connect function create container, container going to send to the props. 
+//so, use componwntwillreceiveprops.
